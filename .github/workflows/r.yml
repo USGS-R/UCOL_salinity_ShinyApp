@@ -20,8 +20,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-22.04
-    container:
-      image: rocker/geospatial:latest
+#     container:
+#       image: rocker/geospatial:latest
     strategy:
       matrix:
         r-version: ['4.1.1']
