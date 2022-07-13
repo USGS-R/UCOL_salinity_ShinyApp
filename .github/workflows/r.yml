@@ -21,7 +21,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: artifactory.wma.chs.usgs.gov/docker-official-mirror/rocker/geospatial:latest
+      image: rocker/geospatial:latest
     strategy:
       matrix:
         r-version: ['4.1.1']
