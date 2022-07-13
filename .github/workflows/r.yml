@@ -19,10 +19,9 @@ permissions:
 
 jobs:
   build:
-    docker:
-      - image: artifactory.wma.chs.usgs.gov/docker-official-mirror/rocker/geospatial:latest
-
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    container:
+      image: artifactory.wma.chs.usgs.gov/docker-official-mirror/rocker/geospatial:latest
     strategy:
       matrix:
         r-version: ['4.1.1']
@@ -36,10 +35,9 @@ jobs:
         run: |
           install.packages(c("remotes", "rcmdcheck"))
           remotes::install_deps(dependencies = TRUE)
-          Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv')"
-          Rscript -e "renv::restore()"
-          Rscript -e "renv::snapshot()"
+          Rscript -e 'if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv')'
+                  -e 'renv::restore()'
+                  -e 'renv::snapshot()'
         shell: Rscript {0}
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
-        shell: Rscript {0}
