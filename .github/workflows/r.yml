@@ -35,6 +35,6 @@ jobs:
           renv::restore()
           renv::snapshot()
         shell: Rscript {0}
-      - name: Check
-        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
-        shell: Rscript {0}
+      # - name: Check
+        # run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
+        # shell: Rscript {0}
