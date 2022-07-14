@@ -51,4 +51,4 @@ jobs:
         env:
           SHINYAPPS_ACCOUNT: ${{ secrets.SHINYAPPS_ACCOUNT }}
           SHINYAPPS_SECRET: ${{ secrets.CONNECT_API_KEY }}
-        run: Rscript deploy/deploy-shinyapps.R
+        run: Rscript app.R
