@@ -29,12 +29,26 @@ jobs:
         uses: r-lib/actions/setup-r@f57f1301a053485946083d7a45022b278929a78a
         with:
           r-version: ${{ matrix.r-version }}
+          
       - name: Install dependencies
         run: |
           if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv')
           renv::restore()
           renv::snapshot()
         shell: Rscript {0}
-      # - name: Check
-        # run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
-        # shell: Rscript {0}
+        
+      - name: Install R CMD check
+        run: install.packages("rcmdcheck")
+        shell: Rscript {0}
+        
+      - name: Check
+        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
+        shell: Rscript {0}
+        # Continuous deployment only for pushes to the main / master branch
+        
+      - name: Deploy to shinyapps
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        env:
+          SHINYAPPS_ACCOUNT: ${{ secrets.SHINYAPPS_ACCOUNT }}
+          SHINYAPPS_SECRET: ${{ secrets.CONNECT_API_KEY }}
+        run: Rscript deploy/deploy-shinyapps.R
