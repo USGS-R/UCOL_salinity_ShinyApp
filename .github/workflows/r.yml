@@ -38,8 +38,8 @@ jobs:
         shell: Rscript {0}
         
       - name: Install Rconnect
-        #run: install.packages("rsconnect")
-        #shell: Rscript {0}
+        run: install.packages("rsconnect")
+        shell: Rscript {0}
         
       # - name: Check
         #run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
