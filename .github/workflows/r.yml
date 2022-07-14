@@ -45,14 +45,8 @@ jobs:
         #run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
         #shell: Rscript {0}
         
-        # Continuous deployment only for pushes to the main / master branch
-      - name: Deploy to shinyapps
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-        
-        # env:
-          # SHINYAPPS_ACCOUNT: ${{ secrets.SHINYAPPS_ACCOUNT }}
-          # SHINYAPPS_SECRET: ${{ secrets.CONNECT_API_KEY }}
-        # run: Rscript app.R
-        
-        run: Rscript rsconnect::writeManifest()
+      - name: Generate manifest.json
+        run: |
+          rsconnect::writeManifest(appDir = "${{ env.APP_DIR }}")
+        shell: Rscript {0}
         
