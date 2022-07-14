@@ -37,15 +37,15 @@ jobs:
           renv::snapshot()
         shell: Rscript {0}
         
-      - name: Install R CMD check
-        run: install.packages("rcmdcheck")
-        shell: Rscript {0}
+      #- name: Install R CMD check
+        #run: install.packages("rcmdcheck")
+        #shell: Rscript {0}
         
-      - name: Check
-        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
-        shell: Rscript {0}
+      # - name: Check
+        #run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
+        #shell: Rscript {0}
+        
         # Continuous deployment only for pushes to the main / master branch
-        
       - name: Deploy to shinyapps
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         env:
