@@ -20,6 +20,12 @@ permissions:
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      APP_NAME: "UCOL_salinity_exp1.Rdata"
+      APP_DIR: "app"
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      RSCONNECT_URL: ${{ secrets.SHINYAPPS_ACCOUNT }}
+      RSCONNECT_APIKEY: ${{ secrets.RSCONNECT_APIKEY }}
     strategy:
       matrix:
         r-version: ['4.1.1']
