@@ -31,9 +31,9 @@ jobs:
           r-version: ${{ matrix.r-version }}
       - name: Install dependencies
         run: |
-          Rscript -e 'if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv')'
-                  -e 'renv::restore()'
-                  -e 'renv::snapshot()'
+          if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv')
+          renv::restore()
+          renv::snapshot()
         shell: Rscript {0}
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
