@@ -31,8 +31,6 @@ jobs:
           r-version: ${{ matrix.r-version }}
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "rcmdcheck"))
-          remotes::install_deps(dependencies = TRUE)
           Rscript -e 'if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv')'
                   -e 'renv::restore()'
                   -e 'renv::snapshot()'
