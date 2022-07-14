@@ -37,8 +37,8 @@ jobs:
           renv::snapshot()
         shell: Rscript {0}
         
-      #- name: Install R CMD check
-        #run: install.packages("rcmdcheck")
+      - name: Install Rconnect
+        #run: install.packages("rsconnect")
         #shell: Rscript {0}
         
       # - name: Check
