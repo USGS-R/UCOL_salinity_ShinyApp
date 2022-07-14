@@ -54,5 +54,5 @@ jobs:
           # SHINYAPPS_SECRET: ${{ secrets.CONNECT_API_KEY }}
         # run: Rscript app.R
         
-        run: Rscript rsconnect::writeManifest(appPrimaryDoc = "app.R")
+        run: Rscript rsconnect::writeManifest()
         
