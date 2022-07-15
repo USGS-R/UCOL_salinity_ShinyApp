@@ -22,7 +22,7 @@ jobs:
     runs-on: windows-latest
     env:
       APP_NAME: "UCOL_salinity_exp1.Rdata"
-      APP_DIR: "app"
+      APP_DIR: "/"
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       RSCONNECT_URL: ${{ secrets.SHINYAPPS_ACCOUNT }}
       RSCONNECT_APIKEY: ${{ secrets.RSCONNECT_APIKEY }}
@@ -55,7 +55,7 @@ jobs:
       - name: Deploy to RStudio Connect
         uses: rstudio/actions/connect-publish@main
         with:
-          url: https://${{ env.RSCONNECT_APIKEY }}@${{ env.RSCONNECT_URL }}
+          url: https://rconnect.chs.usgs.gov/content/59cd6234-08da-44dc-b44c-d6a07c04a33b
           access-type: logged_in
           show-logs: true
           force: true
