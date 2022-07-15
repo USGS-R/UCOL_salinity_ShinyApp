@@ -47,12 +47,17 @@ jobs:
         run: install.packages("rsconnect")
         shell: Rscript {0}
         
-      # - name: Check
-        #run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
-        #shell: Rscript {0}
-        
       - name: Generate manifest.json
         run: |
           rsconnect::writeManifest(appDir = "${{ env.APP_DIR }}")
         shell: Rscript {0}
         
+      - name: Deploy to RStudio Connect
+        uses: rstudio/actions/connect-publish@main
+        with:
+          url: https://${{ env.RSCONNECT_APIKEY }}@${{ env.RSCONNECT_URL }}
+          access-type: logged_in
+          show-logs: true
+          force: true
+          dir: ${{ env.APP_DIR }}
+          require-vanity-path: true
