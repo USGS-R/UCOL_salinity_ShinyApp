@@ -51,13 +51,3 @@ jobs:
         run: |
           rsconnect::writeManifest(appDir = "${{ env.APP_DIR }}")
         shell: Rscript {0}
-        
-      - name: Deploy to RStudio Connect
-        uses: rstudio/actions/connect-publish@main
-        with:
-          url: https://rconnect.chs.usgs.gov/content/59cd6234-08da-44dc-b44c-d6a07c04a33b
-          access-type: logged_in
-          show-logs: true
-          force: true
-          dir: ${{ env.APP_DIR }}
-          require-vanity-path: true
